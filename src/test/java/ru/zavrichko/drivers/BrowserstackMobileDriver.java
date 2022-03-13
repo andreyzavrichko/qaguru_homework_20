@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import ru.zavrichko.config.Credentials;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,11 +23,14 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
     public WebDriver createDriver(DesiredCapabilities caps) {
 
         // Set your access credentials
-        caps.setCapability("browserstack.user", "andreyzavrichko_Xe3Bnj");
-        caps.setCapability("browserstack.key", "jhEPjqxKLx9dxaDjMSCk");
+        String user = Credentials.config.user();
+        String key = Credentials.config.key();
+        String app = Credentials.config.app();
+        caps.setCapability("browserstack.user", user);
+        caps.setCapability("browserstack.key", key);
 
         // Set URL of the application under test
-        caps.setCapability("app", "bs://17b96da063137f62873e5d3748526ccf30f9fec5");
+        caps.setCapability("app", app);
 
         // Specify device and os_version for testing
         caps.setCapability("device", "Google Pixel 3");
